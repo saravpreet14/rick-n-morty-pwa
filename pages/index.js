@@ -23,6 +23,7 @@ export default function Home({ data }) {
     ...info,
     current: defaultEndpoint,
   });
+  // console.log(page, info);
   const current = page.current;
 
   useEffect(() => {
@@ -66,7 +67,8 @@ export default function Home({ data }) {
 
   function search(event) {
     event.preventDefault();
-    console.log(event, defaultEndpoint + "?name=" + event.target[0].value);
+    // console.log(event, defaultEndpoint + "?name=" + event.target[0].value);
+
     updatePage((prev) => {
       return {
         ...prev,
@@ -84,9 +86,7 @@ export default function Home({ data }) {
       <div className={styles.searchForm}>
         <form onSubmit={(event) => search(event)}>
           <input placeholder="Find" className={styles.searchInput} />
-          <button className={styles.searchButton}>
-            Search
-          </button>
+          <button className={styles.searchButton}>Search</button>
         </form>
       </div>
       <div className={styles.characterItems}>
