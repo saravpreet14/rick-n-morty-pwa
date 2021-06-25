@@ -85,12 +85,13 @@ export default function Home({ data }) {
         <form onSubmit={(event) => search(event)}>
           <input placeholder="Search" />
           <button className={styles.searchButton}>
-            <Image
+            {/* <img
               src="/images/search.jpg"
               className={styles.searchButtonImage}
               alt=""
-              layout="fill"
-            />
+              
+            /> */}
+            Search
           </button>
         </form>
       </div>
