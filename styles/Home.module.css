@@ -115,27 +115,19 @@
 
 .grid {
   display: grid;
-<<<<<<< HEAD
   grid-template-columns: 1fr 1fr 1fr 1fr;
-=======
-  grid-template-columns: 1fr 1fr 1fr;
->>>>>>> dd1a1213e5ecf98cbc9046fb2b658772d4369da3
   width: 80vw;
   align-items: center;
   grid-gap: 5vw;
   margin: auto;
-<<<<<<< HEAD
   grid-column-gap: 4vw;
   grid-row-gap: 2vw;
-=======
->>>>>>> dd1a1213e5ecf98cbc9046fb2b658772d4369da3
 }
 
 .loadButton {
   margin: auto;
 }
 
-<<<<<<< HEAD
 .searchButtonImage {
   width: 100%;
   height: 100%;
@@ -157,8 +149,6 @@
   margin: auto;
 }
 
-@media (max-width: 650px) {
-=======
 .profile {
   display: grid;
   grid-template-columns: auto 1fr;
@@ -186,8 +176,7 @@
   text-decoration: underline;
 }
 
-@media (max-width: 600px) {
->>>>>>> dd1a1213e5ecf98cbc9046fb2b658772d4369da3
+@media (max-width: 650px) {
   .grid {
     display: flex;
     flex-direction: column;
