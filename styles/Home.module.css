@@ -126,9 +126,39 @@
   margin: auto;
 }
 
+.profile {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 5%;
+}
+.profile_details {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.character_details {
+  border: initial;
+  border-bottom: solid;
+  border-width: 1px;
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+.back a {
+  color: blue;
+  text-decoration: underline;
+}
+
 @media (max-width: 600px) {
   .grid {
     width: 100%;
     flex-direction: column;
+  }
+  .profile {
+    grid-template-columns: auto;
   }
 }

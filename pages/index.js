@@ -12,7 +12,7 @@ export async function getServerSideProps() {
 }
 
 export default function Home({ data }) {
-  console.log(data);
+  // console.log(data);
   const info = data.info;
   const defaultResults = data.results;
 
