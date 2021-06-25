@@ -12,6 +12,7 @@ export async function getServerSideProps() {
 }
 
 export default function Home({ data }) {
+<<<<<<< HEAD
   console.log(data);
   const info = data.info;
   const defaultResults = data.results;
@@ -35,6 +36,26 @@ export default function Home({ data }) {
         updateResults([])
         return;
       }
+=======
+  // console.log(data);
+  const info = data.info;
+  const defaultResults = data.results;
+
+  const [results, updateResults] = useState(defaultResults);
+
+  const [page, updatePage] = useState({
+    ...info,
+    current: defaultEndpoint,
+  });
+  const current = page.current;
+
+  useEffect(() => {
+    if (current === defaultEndpoint) return;
+
+    async function request() {
+      const response = await getData(current);
+      const nextData = response.data;
+>>>>>>> dd1a1213e5ecf98cbc9046fb2b658772d4369da3
 
       updatePage({
         current: current,
@@ -63,6 +84,7 @@ export default function Home({ data }) {
     });
   }
 
+<<<<<<< HEAD
   function search(event) {
     event.preventDefault();
     console.log(event, defaultEndpoint + '?name=' + event.target[0].value);
@@ -74,18 +96,23 @@ export default function Home({ data }) {
     })
   }
 
+=======
+>>>>>>> dd1a1213e5ecf98cbc9046fb2b658772d4369da3
   return (
     <>
       <Head>
         <title>Rick and Morty</title>
       </Head>
       <h1>Rick and Morty</h1>
+<<<<<<< HEAD
       <div className={styles.searchForm}>
         <form onSubmit={(event) => search(event)}>
           <input placeholder='Search' />
           <button className={styles.searchButton}><img src='/images/search.jpg' className={styles.searchButtonImage} /></button>
         </form>
       </div>
+=======
+>>>>>>> dd1a1213e5ecf98cbc9046fb2b658772d4369da3
       <div className={styles.grid}>
         {results.map((result) => {
           return (
