@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import getData from "../lib/fetchData";
 import Card from "../component/characterCard";
@@ -84,9 +85,11 @@ export default function Home({ data }) {
         <form onSubmit={(event) => search(event)}>
           <input placeholder="Search" />
           <button className={styles.searchButton}>
-            <img
+            <Image
               src="/images/search.jpg"
               className={styles.searchButtonImage}
+              alt=""
+              layout="fill"
             />
           </button>
         </form>
