@@ -1,12 +1,12 @@
 import Link from "next/link";
-import Image from "next/image";
+import styles from './character.module.css'
 
 export default (props) => {
   return (
-    <div>
+    <div className={styles.characterCard} >
       <Link href={props.url}>
         <a>
-          <Image src={props.image} alt="" width="300" height="300" />
+          <img src={props.image} alt={props.name} />
           <h3>{props.name}</h3>
         </a>
       </Link>
