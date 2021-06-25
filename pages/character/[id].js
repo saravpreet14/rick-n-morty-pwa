@@ -2,7 +2,7 @@
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
-import styles from "../../styles/Home.module.css";
+import styles from "./style.module.css";
 
 const defaultEndPoint = `https://rickandmortyapi.com/api/character/`;
 export async function getServerSideProps({ params }) {

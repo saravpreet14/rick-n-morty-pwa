@@ -1,0 +1,11 @@
+.characterCard {
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin: 1rem;
+}
+
+.characterCard:hover {
+    border-color: #2880f3;
+    color: #2880f3;
+}

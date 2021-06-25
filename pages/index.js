@@ -83,19 +83,13 @@ export default function Home({ data }) {
       <h1>Rick and Morty</h1>
       <div className={styles.searchForm}>
         <form onSubmit={(event) => search(event)}>
-          <input placeholder="Search" />
+          <input placeholder="Find" className={styles.searchInput} />
           <button className={styles.searchButton}>
-            {/* <img
-              src="/images/search.jpg"
-              className={styles.searchButtonImage}
-              alt=""
-              
-            /> */}
             Search
           </button>
         </form>
       </div>
-      <div className={styles.grid}>
+      <div className={styles.characterItems}>
         {results.map((result) => {
           return (
             <Card
@@ -107,13 +101,13 @@ export default function Home({ data }) {
           );
         })}
       </div>
-      <p>
+      <div className={styles.loadMore}>
         {page.next ? (
           <button onClick={loadMore} className={styles.loadButton}>
             Load More
           </button>
         ) : null}
-      </p>
+      </div>
     </>
   );
 }
