@@ -3,24 +3,25 @@ import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
 import styles from "../../styles/MyCharacter.module.css";
+import { getCharacter } from "../../lib/getData";
 
-const defaultEndPoint = `https://rickandmortyapi.com/api/character/`;
 export async function getServerSideProps({ params }) {
   //for staticProps params should come from getStaticPaths
   const id = params.id;
-  const url = defaultEndPoint + id;
-  // console.log(url);
-  const response = await fetch(url);
-  const data = await response.json();
+  const data = await getCharacter(id);
   return {
     props: {
-      data,
+      data: data[0],
     },
   };
 }
 
 export default function MyCharacter(props) {
   // console.log(props);
+  if (!props.data) {
+    // Handle page not found here
+
+  }
   const { name, image, gender, location, origin, species, status } = props.data;
   // console.log(name);
   return (

@@ -1,19 +1,20 @@
 import Head from "next/head";
-import Image from "next/image";
 import styles from "../styles/Home.module.css";
-import getData from "../lib/fetchData";
 import Card from "../component/characterCard";
 import { useEffect, useState } from "react";
+import { getCharacters } from '../lib/getData';
 
-const defaultEndpoint = "https://rickandmortyapi.com/api/character/";
+const defaultPage = {
+  page: 1, 
+  name: ''
+};
 
 export async function getServerSideProps() {
-  const data = await getData(defaultEndpoint);
-  return { props: data };
+  const data = await getCharacters();
+  return { props: {data} };
 }
 
 export default function Home({ data }) {
-  // console.log(data);
   const info = data.info;
   const defaultResults = data.results;
 
@@ -21,19 +22,18 @@ export default function Home({ data }) {
 
   const [page, updatePage] = useState({
     ...info,
-    current: defaultEndpoint,
+    current: defaultPage,
   });
-  // console.log(page, info);
+
   const current = page.current;
 
   useEffect(() => {
-    if (current === defaultEndpoint) return;
+    if (current === defaultPage) return;
 
     async function request() {
-      const response = await getData(current);
-      const nextData = response.data;
+      const nextData = await getCharacters(current.page, current.name);
 
-      if (nextData.error) {
+      if (!nextData) {
         updateResults([]);
         return;
       }
@@ -60,21 +60,29 @@ export default function Home({ data }) {
     updatePage((prev) => {
       return {
         ...prev,
-        current: page.next,
+        current: {
+          page: page.next,
+          name: prev.current.name
+        },
       };
     });
   }
 
   function search(event) {
     event.preventDefault();
-    // console.log(event, defaultEndpoint + "?name=" + event.target[0].value);
+    const searchQuery = event.target[0].value;
 
     updatePage((prev) => {
       return {
         ...prev,
-        current: defaultEndpoint + "?name=" + event.target[0].value,
+        current: {
+          page: 1,
+          name: searchQuery,
+        }
       };
     });
+
+    event.target[0].value = ''
   }
 
   return (
@@ -101,6 +109,12 @@ export default function Home({ data }) {
           );
         })}
       </div>
+      {
+        results.length > 0 ? null : 
+        <div className={styles.noDataMessage}>
+          <h2>Nothing to show</h2>
+        </div>
+      }
       <div className={styles.loadMore}>
         {page.next ? (
           <button onClick={loadMore} className={styles.loadButton}>
