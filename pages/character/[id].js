@@ -3,26 +3,67 @@ import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
 import styles from "../../styles/MyCharacter.module.css";
+import { useQuery, gql } from "@apollo/client";
+// import isHome from "../index.js";
 
-const defaultEndPoint = `https://rickandmortyapi.com/api/character/`;
+// const defaultEndPoint = `https://rickandmortyapi.com/api/character/`;
 export async function getServerSideProps({ params }) {
   //for staticProps params should come from getStaticPaths
-  const id = params.id;
-  const url = defaultEndPoint + id;
-  // console.log(url);
-  const response = await fetch(url);
-  const data = await response.json();
+  // const id = params.id;
+  // const url = defaultEndPoint + id;
+  // // console.log(url);
+  // const response = await fetch(url);
+  // const data = await response.json();
   return {
     props: {
-      data,
+      params,
     },
   };
 }
-
+// console.log(isHome);
 export default function MyCharacter(props) {
   // console.log(props);
-  const { name, image, gender, location, origin, species, status } = props.data;
+  const params = props.params;
+  const id = params.id;
+
+  const Character_data = gql`
+    query CharacterByIdsQuery($ids: [ID!]!) {
+      charactersByIds(ids: $ids) {
+        id
+        name
+        status
+        species
+        type
+        gender
+        origin {
+          name
+        }
+        location {
+          name
+        }
+        image
+      }
+    }
+  `;
+  const { loading, error, data } = useQuery(Character_data, {
+    variables: { ids: id },
+  });
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error :(</p>;
+
+  const { name, image, gender, location, origin, species, status } =
+    data.charactersByIds[0];
+  // console.log(data.charactersByIds[0]);
+  // console.log(char_id);
   // console.log(name);
+  // console.log(image);
+  // console.log(gender);
+  // console.log(location);
+  // console.log(origin);
+  // console.log(species);
+  // console.log(status);
+  // console.log(name);
+
   return (
     <div className={styles.container}>
       <Head>
@@ -59,7 +100,12 @@ export default function MyCharacter(props) {
         </div>
         <br />
         <br />
-        <p className={styles.back}>
+        <p
+          className={styles.back}
+          onClick={() => {
+            console.log("onClick");
+          }}
+        >
           <Link href="/">
             <a>Back to All Characters</a>
           </Link>
