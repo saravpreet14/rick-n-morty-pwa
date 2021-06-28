@@ -3,6 +3,7 @@ import styles from "../styles/Home.module.css";
 import Card from "../components/characterCard/characterCard";
 import { useQuery, gql } from "@apollo/client";
 import SearchBar from "../components/searchBar/searchBar";
+import CharacterList from "../components/characterList/characterList";
 
 var isSearch = false;
 var current_filter = "";
@@ -19,16 +20,6 @@ export default function Home() {
         results {
           id
           name
-          status
-          species
-          type
-          gender
-          origin {
-            name
-          }
-          location {
-            name
-          }
           image
         }
       }
@@ -46,11 +37,9 @@ export default function Home() {
   function loadMore(isSearch, current_filter) {
     const nextPage = data.characters.info.next;
     var variables = { page: nextPage, filter: {} };
-    console.log(isSearch);
     if (isSearch) {
       variables = { page: nextPage, filter: { name: current_filter } };
     }
-    console.log(variables);
 
     fetchMore({
       variables: variables,
@@ -93,16 +82,6 @@ export default function Home() {
         <title>Rick and Morty</title>
       </Head>
       <h1>Rick and Morty</h1>
-      {/* <div className={styles.searchForm}>
-        <form
-          onSubmit={(event) => {
-            search(event);
-          }}
-        >
-          <input placeholder="Find" className={styles.searchInput} />
-          <button className={styles.searchButton}>Search</button>
-        </form>
-      </div> */}
       <SearchBar search={(event) => search(event)} />
       <div className={styles.loadMore}>
         <button
@@ -120,8 +99,8 @@ export default function Home() {
           Back To All Characters
         </button>
       </div>
-
-      <div className={styles.characterItems}>
+      <CharacterList characters={results} />
+      {/* <div className={styles.characterItems}>
         {results.map((result) => {
           return (
             <Card
@@ -137,7 +116,8 @@ export default function Home() {
         <div className={styles.noDataMessage}>
           <h2>Nothing to show</h2>
         </div>
-      )}
+      )} */}
+
       <div className={styles.loadMore}>
         {info.next ? (
           <button

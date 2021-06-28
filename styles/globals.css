@@ -26,6 +26,11 @@ h1 {
   font-family: 'Kaushan Script', cursive;
 }
 
+.MuiGridListTile-tile {
+  border-radius: 4%;
+  overflow: hidden;
+}
+
 @media (max-width: 800px) {
   h1 {
     font-size: 3rem;
