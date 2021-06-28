@@ -1,5 +1,4 @@
 import Head from "next/head";
-import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import getData from "../lib/fetchData";
 import Card from "../components/characterCard";
@@ -171,6 +170,12 @@ export default function Home() {
           );
         })}
       </div>
+      {
+        results.length > 0 ? null : 
+        <div className={styles.noDataMessage}>
+          <h2>Nothing to show</h2>
+        </div>
+      }
       <div className={styles.loadMore}>
         {info.next ? (
           <button
