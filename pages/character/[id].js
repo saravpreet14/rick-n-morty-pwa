@@ -1,28 +1,19 @@
-// import Layout from "../../components/layout";
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
 import styles from "../../styles/MyCharacter.module.css";
 import { useQuery, gql } from "@apollo/client";
-// import isHome from "../index.js";
 
-// const defaultEndPoint = `https://rickandmortyapi.com/api/character/`;
 export async function getServerSideProps({ params }) {
   //for staticProps params should come from getStaticPaths
-  // const id = params.id;
-  // const url = defaultEndPoint + id;
-  // // console.log(url);
-  // const response = await fetch(url);
-  // const data = await response.json();
   return {
     props: {
       params,
     },
   };
 }
-// console.log(isHome);
+
 export default function MyCharacter(props) {
-  // console.log(props);
   const params = props.params;
   const id = params.id;
 
@@ -53,17 +44,6 @@ export default function MyCharacter(props) {
 
   const { name, image, gender, location, origin, species, status } =
     data.charactersByIds[0];
-  // console.log(data.charactersByIds[0]);
-  // console.log(char_id);
-  // console.log(name);
-  // console.log(image);
-  // console.log(gender);
-  // console.log(location);
-  // console.log(origin);
-  // console.log(species);
-  // console.log(status);
-  // console.log(name);
-
   return (
     <div className={styles.container}>
       <Head>
