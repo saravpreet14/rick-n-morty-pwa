@@ -107,7 +107,7 @@ export default function MyCharacter(props) {
           }}
         >
           <Link href="/">
-            <a>Back to All Characters</a>
+            <a>Back</a>
           </Link>
         </p>
       </main>

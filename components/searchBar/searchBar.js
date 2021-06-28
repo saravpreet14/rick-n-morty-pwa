@@ -1,23 +1,23 @@
 import { makeStyles, IconButton, TextField } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 
-const useStyles = makeStyles((theme) => ({
+const styles = makeStyles((theme) => ({
   iconButton: {
     padding: 10,
   },
   root: {
     display: "flex",
     backgroundColor: theme.palette.background.paper,
-    margin: 'auto',
-    '-webkit-box-align': 'center',
-    alignItems: 'center',
-    '-webkit-box-pack': 'center',
-    justifyContent: 'center'
+    margin: "auto",
+    "-webkit-box-align": "center",
+    alignItems: "center",
+    "-webkit-box-pack": "center",
+    justifyContent: "center",
   },
 }));
 
 export default function searchBar(props) {
-  const classes = useStyles();
+  const classes = styles();
 
   return (
     <div>

@@ -2,11 +2,13 @@ import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import Card from "../components/characterCard/characterCard";
 import { useQuery, gql } from "@apollo/client";
-import SearchBar from '../components/searchBar/searchBar';
+import SearchBar from "../components/searchBar/searchBar";
 
 var isSearch = false;
 var current_filter = "";
+// console.log("top");
 export default function Home() {
+  // console.log("home");
   const Characters_data = gql`
     query CharactersQuery($page: Int, $filter: FilterCharacter) {
       characters(page: $page, filter: $filter) {
@@ -35,6 +37,7 @@ export default function Home() {
 
   const { loading, error, data, fetchMore } = useQuery(Characters_data, {
     variables: { page: 1, filter: {} },
+    errorPolicy: "ignore",
   });
 
   if (loading) return <p>Loading...</p>;
@@ -51,6 +54,7 @@ export default function Home() {
 
     fetchMore({
       variables: variables,
+
       updateQuery: (prevResult, { fetchMoreResult }) => {
         fetchMoreResult.characters.results = [
           ...prevResult.characters.results,
@@ -65,17 +69,23 @@ export default function Home() {
     event.preventDefault();
     isSearch = true;
     current_filter = event.target[0].value;
-    console.log(isSearch);
+    event.target[0].value = "";
+    // console.log(isSearch);
 
     fetchMore({
       variables: { page: null, filter: { name: current_filter } },
       updateQuery: (prevResult, { fetchMoreResult }) => {
+        // console.log("came here");
         return fetchMoreResult;
       },
     });
   }
-  const results = data.characters.results;
-  const info = data.characters.info;
+  // console.log(data);
+
+  const results = data.characters ? data.characters.results : [];
+  const info = data.characters
+    ? data.characters.info
+    : { prev: null, next: null };
 
   return (
     <>
@@ -94,6 +104,23 @@ export default function Home() {
         </form>
       </div> */}
       <SearchBar search={(event) => search(event)} />
+      <div className={styles.loadMore}>
+        <button
+          onClick={() => {
+            fetchMore({
+              variables: { page: 1, filter: {} },
+              updateQuery: (prevResult, { fetchMoreResult }) => {
+                return fetchMoreResult;
+              },
+            });
+            isSearch = false;
+          }}
+          className={styles.loadButton}
+        >
+          Back To All Characters
+        </button>
+      </div>
+
       <div className={styles.characterItems}>
         {results.map((result) => {
           return (
@@ -106,12 +133,11 @@ export default function Home() {
           );
         })}
       </div>
-      {
-        results.length > 0 ? null : 
+      {results.length > 0 ? null : (
         <div className={styles.noDataMessage}>
           <h2>Nothing to show</h2>
         </div>
-      }
+      )}
       <div className={styles.loadMore}>
         {info.next ? (
           <button
