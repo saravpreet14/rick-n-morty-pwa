@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { makeStyles } from "@material-ui/core/styles";
 import {
   GridList,
@@ -44,9 +45,9 @@ export default function TitlebarGridList(props) {
             <h2 className={classes.noData}>Nothing to show</h2> : 
             <GridList className={classes.gridList}>
                 {props.characters.map((character) => (
-                <Link href={"/character/" + character.id}>
-                    <GridListTile className={classes.gridTile} key={character.image}>
-                    <img src={character.image} alt={character.name} />
+                <Link key={character.id} href={"/character/" + character.id} passHref>
+                    <GridListTile className={classes.gridTile} key={character.id}>
+                    <Image width='300' height='300' src={character.image} alt={character.name} />
                     <GridListTileBar title={character.name} />
                     </GridListTile>
                 </Link>
