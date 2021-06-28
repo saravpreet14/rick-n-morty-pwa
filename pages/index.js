@@ -7,9 +7,7 @@ import CharacterList from "../components/characterList/characterList";
 
 var isSearch = false;
 var current_filter = "";
-// console.log("top");
 export default function Home() {
-  // console.log("home");
   const Characters_data = gql`
     query CharactersQuery($page: Int, $filter: FilterCharacter) {
       characters(page: $page, filter: $filter) {
@@ -58,18 +56,14 @@ export default function Home() {
     event.preventDefault();
     isSearch = true;
     current_filter = event.target[0].value;
-    event.target[0].value = "";
-    // console.log(isSearch);
 
     fetchMore({
       variables: { page: null, filter: { name: current_filter } },
       updateQuery: (prevResult, { fetchMoreResult }) => {
-        // console.log("came here");
         return fetchMoreResult;
       },
     });
   }
-  // console.log(data);
 
   const results = data.characters ? data.characters.results : [];
   const info = data.characters
@@ -100,24 +94,6 @@ export default function Home() {
         </button>
       </div>
       <CharacterList characters={results} />
-      {/* <div className={styles.characterItems}>
-        {results.map((result) => {
-          return (
-            <Card
-              key={result.id}
-              url={"/character/" + result.id}
-              name={result.name}
-              image={result.image}
-            />
-          );
-        })}
-      </div>
-      {results.length > 0 ? null : (
-        <div className={styles.noDataMessage}>
-          <h2>Nothing to show</h2>
-        </div>
-      )} */}
-
       <div className={styles.loadMore}>
         {info.next ? (
           <button
