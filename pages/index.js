@@ -83,16 +83,6 @@ export default function Home() {
         <title>Rick and Morty</title>
       </Head>
       <h1>Rick and Morty</h1>
-      {/* <div className={styles.searchForm}>
-        <form
-          onSubmit={(event) => {
-            search(event);
-          }}
-        >
-          <input placeholder="Find" className={styles.searchInput} />
-          <button className={styles.searchButton}>Search</button>
-        </form>
-      </div> */}
       <SearchBar search={(event) => search(event)} />
       <div className={styles.characterItems}>
         {results.map((result) => {
