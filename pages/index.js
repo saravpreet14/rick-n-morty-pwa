@@ -1,64 +1,12 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
-import getData from "../lib/fetchData";
-import Card from "../components/characterCard";
-import { useEffect, useState } from "react";
+import Card from "../components/characterCard/characterCard";
 import { useQuery, gql } from "@apollo/client";
+import SearchBar from '../components/searchBar/searchBar';
 
-// const defaultEndpoint = "https://rickandmortyapi.com/api/character/";
-
-// export async function getServerSideProps() {
-//   const data = await getData(defaultEndpoint);
-//   return { props: data };
-// }
-console.log("top");
 var isSearch = false;
-// export var isHome = false;
 var current_filter = "";
 export default function Home() {
-  // console.log(data);
-  // const info = data.info;
-  // const defaultResults = data.results;
-
-  // const [results, updateResults] = useState(defaultResults);
-
-  // const [page, updatePage] = useState({
-  //   ...info,
-  //   current: defaultEndpoint,
-  // });
-  // // console.log(page, info);
-  // const current = page.current;
-
-  // useEffect(() => {
-  //   if (current === defaultEndpoint) return;
-
-  //   async function request() {
-  //     const response = await getData(current);
-  //     const nextData = response.data;
-
-  //     if (nextData.error) {
-  //       updateResults([]);
-  //       return;
-  //     }
-
-  //     updatePage({
-  //       current: current,
-  //       ...nextData.info,
-  //     });
-
-  //     if (!nextData.info.prev) {
-  //       updateResults(nextData.results);
-  //       return;
-  //     }
-
-  //     updateResults((prev) => {
-  //       return [...prev, ...nextData.results];
-  //     });
-  //   }
-
-  //   request();
-  // }, [current]);
-
   const Characters_data = gql`
     query CharactersQuery($page: Int, $filter: FilterCharacter) {
       characters(page: $page, filter: $filter) {
@@ -89,18 +37,8 @@ export default function Home() {
     variables: { page: 1, filter: {} },
   });
 
-  // const {
-  //   loading: search_loading,
-  //   error: search_error,
-  //   data: search_data,
-  //   fetchMore: search_fetchMore,
-  // } = useQuery(Characters_data, {
-  //   variables: { page: null, filter: null },
-  // });
-
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
-  console.log(data);
 
   function loadMore(isSearch, current_filter) {
     const nextPage = data.characters.info.next;
@@ -125,7 +63,6 @@ export default function Home() {
 
   function search(event) {
     event.preventDefault();
-    // console.log("entered search");
     isSearch = true;
     current_filter = event.target[0].value;
     console.log(isSearch);
@@ -136,9 +73,7 @@ export default function Home() {
         return fetchMoreResult;
       },
     });
-    console.log(isSearch);
   }
-  console.log(data);
   const results = data.characters.results;
   const info = data.characters.info;
 
@@ -148,7 +83,7 @@ export default function Home() {
         <title>Rick and Morty</title>
       </Head>
       <h1>Rick and Morty</h1>
-      <div className={styles.searchForm}>
+      {/* <div className={styles.searchForm}>
         <form
           onSubmit={(event) => {
             search(event);
@@ -157,7 +92,8 @@ export default function Home() {
           <input placeholder="Find" className={styles.searchInput} />
           <button className={styles.searchButton}>Search</button>
         </form>
-      </div>
+      </div> */}
+      <SearchBar search={(event) => search(event)} />
       <div className={styles.characterItems}>
         {results.map((result) => {
           return (
