@@ -1,9 +1,9 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
-import Card from "../components/characterCard/characterCard";
 import { useQuery, gql } from "@apollo/client";
 import SearchBar from "../components/searchBar/searchBar";
 import CharacterList from "../components/characterList/characterList";
+import { Button } from "@material-ui/core";
 
 var isSearch = false;
 var current_filter = "";
@@ -77,7 +77,7 @@ export default function Home() {
       </Head>
       <h1>Rick and Morty</h1>
       <SearchBar search={(event) => search(event)} />
-      <div className={styles.loadMore}>
+      {/* <div className={styles.loadMore}>
         <button
           onClick={() => {
             fetchMore({
@@ -92,16 +92,42 @@ export default function Home() {
         >
           Back To All Characters
         </button>
+      </div> */}
+      <div className={styles.loadMore}>
+        <Button
+          variant="contained"
+          color="primary"
+          size="large"
+          onClick={() => {
+            fetchMore({
+              variables: { page: 1, filter: {} },
+              updateQuery: (prevResult, { fetchMoreResult }) => {
+                return fetchMoreResult;
+              },
+            });
+            isSearch = false;
+          }}
+        >
+          Back To All Characters
+        </Button>
       </div>
       <CharacterList characters={results} />
       <div className={styles.loadMore}>
         {info.next ? (
-          <button
+          // <button
+          //   onClick={() => loadMore(isSearch, current_filter)}
+          //   className={styles.loadButton}
+          // >
+          //   Load More
+          // </button>
+          <Button
+            variant="contained"
+            color="primary"
+            size="large"
             onClick={() => loadMore(isSearch, current_filter)}
-            className={styles.loadButton}
           >
             Load More
-          </button>
+          </Button>
         ) : null}
       </div>
     </>
