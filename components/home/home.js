@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import SearchBar from "../searchBar/searchBar";
 import CharacterList from "../characterList/characterList";
 import { Button } from "@material-ui/core";
+import Spinner from '../spinner/spinner';
 
 var isSearch = false;
 // var current_filter = null;
@@ -35,7 +36,7 @@ export default function Home() {
   //   current_filter = useState()[0];
   const [current_filter, setFilter] = useState(isSearch ? my_filter : null);
   //   if (isSearch) setFilter(my_filter);
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <Spinner />;
   if (error) return <p>Error :(</p>;
 
   function loadMore(isSearch, my_filter) {

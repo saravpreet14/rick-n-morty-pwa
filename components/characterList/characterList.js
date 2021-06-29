@@ -20,8 +20,15 @@ const styles = makeStyles((theme) => ({
     justifyContent: "center",
   },
   gridTile: {
-    padding: "1.5rem",
+    margin: "1.5rem",
     borderRadius: "5%",
+    height: "300px",
+    borderRadius: "4%",
+    overflow: "hidden",
+  },
+  "gridTile:hover": {
+    border: "10px solid blue",
+    margin: "20rem",
   },
   noData: {
     textSlign: "center",

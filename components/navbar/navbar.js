@@ -1,4 +1,5 @@
 import styles from "./navbar.module.css";
+import Router from 'next/router'
 import {
   CssBaseline,
   useScrollTrigger,
@@ -14,7 +15,7 @@ export default function navbar(props) {
       <CssBaseline />
       <AppBar>
         <Toolbar>
-          <h1 className={styles.siteName}>Rick and Morty</h1>
+          <h1 className={styles.siteName} onClick={() => Router.reload(window.location.pathname)}>Rick and Morty</h1>
           <h1 className={styles.authButton} onClick={props.auth}>
             {props.isAuth ? "Logout" : "Sign In"}
           </h1>

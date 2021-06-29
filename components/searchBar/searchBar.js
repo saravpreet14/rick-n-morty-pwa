@@ -21,12 +21,6 @@ const styles = makeStyles((theme) => ({
 export default function SearchBar(props) {
   const classes = styles();
   // const [value, setValue] = useState(props.value);
-  // console.log("searchBar", props.value);
-  // var value;
-  // if (!props.value) value = null;
-  // else value = props.value;
-
-  // console.log(value);
 
   return (
     <div>
@@ -41,7 +35,6 @@ export default function SearchBar(props) {
           id="outlined-size-normal"
           variant="outlined"
           style={{ width: "20rem" }}
-          value={props.value}
         />
         <IconButton
           type="submit"

@@ -3,6 +3,8 @@ import Link from "next/link";
 import Image from "next/image";
 import styles from "../../styles/MyCharacter.module.css";
 import { useQuery, gql } from "@apollo/client";
+import Spinner from "../../components/spinner/spinner";
+import { Button } from "@material-ui/core";
 
 export async function getServerSideProps({ params }) {
   //for staticProps params should come from getStaticPaths
@@ -16,7 +18,6 @@ export async function getServerSideProps({ params }) {
 export default function MyCharacter(props) {
   const params = props.params;
   const id = params.id.split("-")[1];
-  console.log(id);
 
   const Character_data = gql`
     query CharacterByIdsQuery($ids: [ID!]!) {
@@ -40,7 +41,7 @@ export default function MyCharacter(props) {
   const { loading, error, data } = useQuery(Character_data, {
     variables: { ids: id },
   });
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <Spinner />;
   if (error) return <p>Error :(</p>;
 
   const { name, image, gender, location, origin, species, status } =
@@ -81,16 +82,11 @@ export default function MyCharacter(props) {
         </div>
         <br />
         <br />
-        <p
-          className={styles.back}
-          onClick={() => {
-            console.log("onClick");
-          }}
-        >
+        <Button variant="contained" color="primary" size="large">
           <Link href="/">
-            <a>Back</a>
+            <a><strong>Back</strong></a>
           </Link>
-        </p>
+        </Button>
       </main>
     </div>
   );
