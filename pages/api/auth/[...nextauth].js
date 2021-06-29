@@ -1,6 +1,9 @@
 import NextAuth from "next-auth";
 import Providers from "next-auth/providers";
 
+import path from "path";
+import fs from "fs";
+
 export default NextAuth({
   // Configure one or more authentication providers
   providers: [
@@ -15,18 +18,24 @@ export default NextAuth({
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials, req) {
-        // Add logic here to look up the user from the credentials supplied
-        // console.log(credentials);
+        const dataFilePath = path.join(process.cwd(), "validation.json");
+        // console.log(dataFilePath);
+        const fileContents = fs.readFileSync(dataFilePath, "utf8");
+        const data = JSON.parse(fileContents);
+        var username = credentials.username;
+        var password = credentials.password;
+        // console.log(data);
         var user = "";
-        if (
-          credentials.username == "sprinklr@123" &&
-          credentials.password == "sprinklr@123"
-        )
-          user = {
-            id: 1,
-            name: credentials.username,
-            email: credentials.username + "@sprinklr.com",
-          };
+        for (let i = 0; i < data.length; i++) {
+          if (data[i].username == username && data[i].password == password) {
+            user = {
+              id: i,
+              name: credentials.username,
+              email: credentials.username + "@sprinklr.com",
+            };
+            break;
+          }
+        }
 
         if (user) {
           // Any object returned will be saved in `user` property of the JWT

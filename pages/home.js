@@ -3,9 +3,11 @@ import styles from "../styles/Home.module.css";
 import { useQuery, gql } from "@apollo/client";
 import SearchBar from "../components/searchBar/searchBar";
 import CharacterList from "../components/characterList/characterList";
+import React, { useState } from "react";
 
 var isSearch = false;
-var current_filter = null;
+// var current_filter = null;
+var my_filter = "";
 // console.log("top");
 export default function Home() {
   // console.log("home");
@@ -29,15 +31,17 @@ export default function Home() {
     variables: { page: 1, filter: {} },
     errorPolicy: "ignore",
   });
-
+  //   current_filter = useState()[0];
+  const [current_filter, setFilter] = useState(isSearch ? my_filter : null);
+  //   if (isSearch) setFilter(my_filter);
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
 
-  function loadMore(isSearch, current_filter) {
+  function loadMore(isSearch, my_filter) {
     const nextPage = data.characters.info.next;
     var variables = { page: nextPage, filter: {} };
     if (isSearch) {
-      variables = { page: nextPage, filter: { name: current_filter } };
+      variables = { page: nextPage, filter: { name: my_filter } };
     }
 
     fetchMore({
@@ -56,12 +60,13 @@ export default function Home() {
   function search(event) {
     event.preventDefault();
     isSearch = true;
-    current_filter = event.target[0].value;
+    setFilter(event.target[0].value);
+    my_filter = event.target[0].value;
     // event.target[0].value = "";
     // console.log(isSearch);
 
     fetchMore({
-      variables: { page: null, filter: { name: current_filter } },
+      variables: { page: null, filter: { name: my_filter } },
       updateQuery: (prevResult, { fetchMoreResult }) => {
         // console.log("came here");
         return fetchMoreResult;
@@ -75,6 +80,8 @@ export default function Home() {
     ? data.characters.info
     : { prev: null, next: null };
 
+  console.log(isSearch, current_filter);
+
   return (
     <>
       <Head>
@@ -87,7 +94,8 @@ export default function Home() {
           <button
             onClick={() => {
               isSearch = false;
-              current_filter = null;
+              setFilter(null);
+              my_filter = null;
               fetchMore({
                 variables: { page: 1, filter: {} },
                 updateQuery: (prevResult, { fetchMoreResult }) => {
@@ -105,7 +113,7 @@ export default function Home() {
       <div className={styles.loadMore}>
         {info.next ? (
           <button
-            onClick={() => loadMore(isSearch, current_filter)}
+            onClick={() => loadMore(isSearch, my_filter)}
             className={styles.loadButton}
           >
             Load More

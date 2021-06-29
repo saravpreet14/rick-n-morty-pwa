@@ -15,7 +15,8 @@ export async function getServerSideProps({ params }) {
 
 export default function MyCharacter(props) {
   const params = props.params;
-  const id = params.id;
+  const id = params.id.split("-")[1];
+  console.log(id);
 
   const Character_data = gql`
     query CharacterByIdsQuery($ids: [ID!]!) {
