@@ -18,6 +18,7 @@
   margin: 1vh 0;
   font-family: "Kaushan Script", cursive;
   padding-left: 5vw;
+  cursor: pointer;
 }
 
 .signInMessage {

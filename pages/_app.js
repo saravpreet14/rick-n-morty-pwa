@@ -1,4 +1,4 @@
-
+import "../styles/globals.css";
 import {
   ApolloClient,
   InMemoryCache,
@@ -28,5 +28,5 @@ function MyApp({ Component, pageProps }) {
     </Provider>
   );
 }
-import "../styles/globals.css";
+
 export default MyApp;
