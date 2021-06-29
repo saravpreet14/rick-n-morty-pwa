@@ -1,5 +1,7 @@
 import { makeStyles, IconButton, TextField } from "@material-ui/core";
+import { PinDropSharp } from "@material-ui/icons";
 import SearchIcon from "@material-ui/icons/Search";
+import { useState } from "react";
 
 const styles = makeStyles((theme) => ({
   iconButton: {
@@ -16,8 +18,9 @@ const styles = makeStyles((theme) => ({
   },
 }));
 
-export default function searchBar(props) {
+export default function SearchBar(props) {
   const classes = styles();
+  // const [value, setValue] = useState(props.value);
 
   return (
     <div>
@@ -32,6 +35,7 @@ export default function searchBar(props) {
           id="outlined-size-normal"
           variant="outlined"
           style={{ width: "20rem" }}
+          // value={props.value}
         />
         <IconButton
           type="submit"
