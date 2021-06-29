@@ -2,10 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { makeStyles } from "@material-ui/core/styles";
 import { GridList, GridListTile, GridListTileBar } from "@material-ui/core";
-<<<<<<< HEAD
-=======
 import { blue } from "@material-ui/core/colors";
->>>>>>> 8801d68ae1db89ff11e2860b6d691de7370275c8
 
 const styles = makeStyles((theme) => ({
   root: {
@@ -54,11 +51,7 @@ export default function TitlebarGridList(props) {
           {props.characters.map((character) => (
             <Link
               key={character.id}
-<<<<<<< HEAD
-              href={"/characterName-id/" + character.id}
-=======
               href={"/character/" + character.id}
->>>>>>> 8801d68ae1db89ff11e2860b6d691de7370275c8
               passHref
             >
               <GridListTile className={classes.gridTile} key={character.id}>
