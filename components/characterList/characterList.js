@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { makeStyles } from "@material-ui/core/styles";
 import { GridList, GridListTile, GridListTileBar } from "@material-ui/core";
+import { blue } from "@material-ui/core/colors";
 
 const styles = makeStyles((theme) => ({
   root: {

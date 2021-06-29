@@ -1,24 +1,17 @@
-import Home from "./home.js";
+import Home from "../components/home/home.js";
 import { signIn, signOut, useSession } from "next-auth/client";
+import Navbar from "../components/navbar/navbar";
 
 export default function SignInPage() {
   const [session, loading] = useSession();
 
+  const authFunction = session ? signOut : signIn;
+
   return (
     <>
-      {!session && (
-        <>
-          Not signed in <br />
-          <button onClick={() => signIn()}>Sign in</button>
-        </>
-      )}
-      {session && (
-        <>
-          Signed in as {session.user.name} <br />
-          <button onClick={() => signOut()}>Sign out</button>
-          <Home />
-        </>
-      )}
+      <Navbar auth={() => authFunction()} isAuth={session ? true : false}>
+        <Home />
+      </Navbar>
     </>
   );
 }
