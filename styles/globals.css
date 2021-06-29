@@ -18,13 +18,13 @@ a {
   box-sizing: border-box;
 }
 
-h1 {
+/* h1 {
   text-align: center;
-  font-size: 5rem;
-  margin-top: 8vh;
-  margin-bottom: 5vh;
+  font-size: 2.5rem;
+  margin-top: 1vh;
+  margin-bottom: 1vh;
   font-family: "Kaushan Script", cursive;
-}
+} */
 
 .MuiGridListTile-tile .MuiGridListTile-tile {
   border-radius: 4%;
@@ -38,6 +38,10 @@ h1 {
   border-bottom: 3px solid black;
   border-bottom-right-radius: 5%;
 }
+
+/* .MuiToolbar-root {
+  padding: 1vh 2vw;
+} */
 
 @media (max-width: 800px) {
   h1 {
