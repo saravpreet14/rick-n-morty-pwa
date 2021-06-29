@@ -73,11 +73,12 @@ export default function MyCharacter(props) {
         </div>
         <br />
         <br />
-        <Button variant="contained" color="primary" size="large">
-          <Link href="/">
-            <a><strong>Back</strong></a>
-          </Link>
-        </Button>
+
+        <Link href="/" passHref>
+          <Button variant="contained" color="primary" size="large">
+            <strong>Back</strong>
+          </Button>
+        </Link>
       </main>
     </div>
   );
