@@ -8,7 +8,7 @@ import { Button } from "@material-ui/core";
 
 export default function MyCharacter(props) {
   const params = props.params;
-  const id = params.id.split("-")[1];
+  const id = params.id.split("-").slice(-1)[0];
 
   const Character_data = gql`
     query CharacterByIdsQuery($ids: [ID!]!) {
@@ -29,11 +29,16 @@ export default function MyCharacter(props) {
       }
     }
   `;
+  // console.log("entered my character");
   const { loading, error, data } = useQuery(Character_data, {
     variables: { ids: id },
+    errorPolicy: "ignore",
   });
   if (loading) return <Spinner />;
-  if (error) return <p>Error :(</p>;
+  if (error) {
+    console.log("this is the error", error);
+    return <p>Error :((</p>;
+  }
 
   const { name, image, gender, location, origin, species, status } =
     data.charactersByIds[0];

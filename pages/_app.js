@@ -50,6 +50,7 @@ function MyApp({ Component, pageProps }) {
           />
           <link rel="apple-touch-icon" href="/apple-icon.png"></link>
           <meta name="theme-color" content="#317EFB" />
+          {/* <script src="../serviceRegister.js" defer></script> */}
         </Head>
         <Component {...pageProps} />
       </ApolloProvider>
