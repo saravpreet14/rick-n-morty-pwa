@@ -8,7 +8,7 @@ import { Button } from "@material-ui/core";
 
 export default function MyCharacter(props) {
   const params = props.params;
-  const id = params.id.split("-")[1];
+  const id = params.id.split("-").slice(-1)[0];
 
   const Character_data = gql`
     query CharacterByIdsQuery($ids: [ID!]!) {
