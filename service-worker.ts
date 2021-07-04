@@ -20,6 +20,9 @@ import {
 skipWaiting();
 clientsClaim();
 
+declare global {
+  interface Window { __WB_MANIFEST: any; }
+}
 // must include following lines when using inject manifest module from workbox
 // https://developers.google.com/web/tools/workbox/guides/precache-files/workbox-build#add_an_injection_point
 const WB_MANIFEST = self.__WB_MANIFEST;
@@ -77,7 +80,6 @@ registerRoute(
 registerRoute(
   /\.(?:jpg|jpeg|gif|png|svg|ico|webp)$/i,
   new NetworkOnly({
-    cacheName: "static-image-assets",
     plugins: [
       new ExpirationPlugin({
         maxEntries: 64,
@@ -165,11 +167,12 @@ registerRoute(
 // https://developers.google.com/web/tools/workbox/guides/advanced-recipes#comprehensive_fallbacks
 
 // Use a stale-while-revalidate strategy for all other requests.
-setDefaultHandler(new StaleWhileRevalidate());
+const options = {};
+setDefaultHandler(new StaleWhileRevalidate(options));
 
 // This "catch" handler is triggered when any of the other routes fail to
 // generate a response.
-setCatchHandler(({ event }) => {
+setCatchHandler(({ event }):any => {
   // The FALLBACK_URL entries must be added to the cache ahead of time, either
   // via runtime or precaching. If they are precached, then call
   // `matchPrecache(FALLBACK_URL)` (from the `workbox-precaching` package)

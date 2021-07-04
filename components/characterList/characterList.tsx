@@ -2,7 +2,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { makeStyles } from "@material-ui/core/styles";
 import { GridList, GridListTile, GridListTileBar } from "@material-ui/core";
-import { blue } from "@material-ui/core/colors";
 
 const styles = makeStyles((theme) => ({
   root: {
@@ -21,14 +20,9 @@ const styles = makeStyles((theme) => ({
   },
   gridTile: {
     margin: "1.5rem",
-    borderRadius: "5%",
     height: "300px",
     borderRadius: "4%",
     overflow: "hidden",
-  },
-  "gridTile:hover": {
-    border: "10px solid blue",
-    margin: "20rem",
   },
   noData: {
     textSlign: "center",
@@ -36,11 +30,16 @@ const styles = makeStyles((theme) => ({
   },
 }));
 
-export default function TitlebarGridList(props) {
+export default function TitlebarGridList(props: {
+  characters: {
+    id: string;
+    name: string;
+    image: string;
+  }[];
+}) {
   const classes = styles();
 
-  if (props.characters.length === 0) {
-  }
+  const styleProps={style: { width: "auto", height: "auto" }};
 
   return (
     <div className={classes.root}>
@@ -57,6 +56,7 @@ export default function TitlebarGridList(props) {
                 "-" +
                 character.id
               }
+              {...styleProps}
               passHref
             >
               <GridListTile className={classes.gridTile} key={character.id}>
