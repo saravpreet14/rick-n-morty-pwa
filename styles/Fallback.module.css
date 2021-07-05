@@ -1,0 +1,35 @@
+.main {
+  display: grid;
+  grid-template-columns: auto;
+  justify-content: center;
+  align-content: center;
+  align-self: center;
+  justify-self: center;
+}
+
+.profile {
+  display: grid;
+  grid-template-columns: auto;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 10px;
+  width: 70vw;
+  margin-top: 20px;
+}
+.profile_details {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+.character_details {
+  border: initial;
+  border-bottom: solid;
+  border-width: 1px;
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+  text-align: center;
+  font-family: "Kaushan Script", cursive;
+  font-size: 40px;
+}
