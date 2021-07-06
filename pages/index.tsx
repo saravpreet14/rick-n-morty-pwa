@@ -1,6 +1,7 @@
 import Home from "../components/home/home";
 import { signIn, signOut, useSession } from "next-auth/client";
 import Navbar from "../components/navbar/navbar";
+import Episodes from '../components/episodes/episodes';
 
 export default function SignInPage() {
   const [session, loading] = useSession();
@@ -13,7 +14,10 @@ export default function SignInPage() {
   return (
     <>
       <Navbar auth={() => authFunction()} isAuth={session ? true : false}>
-        <Home />
+      <div style={{display: 'grid', gridTemplateColumns: '2fr 8fr', marginLeft: '1vw', marginRight: '3vw'}} >
+          <Episodes />
+          <Home />
+        </div>
       </Navbar>
     </>
   );

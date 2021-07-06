@@ -1,0 +1,94 @@
+.main {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(5, 5, 5, 0.8);
+  padding: 3rem;
+  margin: 0;
+  z-index: 1200;
+}
+
+.cell1 {
+  top: 8vh;
+  left: 7vw;
+}
+
+.cell2 {
+  top: 8vh;
+  left: 37.5vw;
+}
+
+.cell3 {
+  top: 8vh;
+  right: 7vw;
+}
+
+.cell4 {
+  bottom: 7vh;
+  left: 7vw;
+}
+
+.cell5 {
+  bottom: 7vh;
+  left: 37.5vw;
+}
+
+.cell6 {
+  bottom: 7vh;
+  right: 7vw;
+}
+
+.fixed {
+  z-index: 1500;
+  width: 25vw;
+  height: 38.5vh;
+  position: fixed;
+  margin: 0;
+  background-color: white;
+  border-radius: 10px;
+  padding: 0.8rem;
+  overflow: auto;
+}
+
+.grid {
+  z-index: 1500;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding: 3rem;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.icon {
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.icon:hover {
+  border-radius: 5%;
+  transition: all 0.1s ease 0s;
+}
+
+.character {
+  padding: 0;
+  margin: 0.5rem;
+  max-width: 80px;
+  overflow: hidden;
+}
+
+.characterName {
+  margin: 0;
+  font-size: 0.8rem;
+  overflow: hidden;
+}
+
+.characterArea {
+  display: flex;
+  flex-wrap: wrap;
+}
