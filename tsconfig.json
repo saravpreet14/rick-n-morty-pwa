@@ -22,7 +22,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "../ricky-and-morty/pages/reportWebVitals.ts"  ],
   "exclude": [
     "node_modules"
   ]

@@ -1,68 +1,31 @@
-.main {
-  width: 100vw;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  left: 0;
-  background-color: rgba(5, 5, 5, 0.8);
-  padding: 3rem;
-  margin: 0;
-  z-index: 1200;
-}
-
-.cell1 {
-  top: 8vh;
-  left: 7vw;
-}
-
-.cell2 {
-  top: 8vh;
-  left: 37.5vw;
-}
-
-.cell3 {
-  top: 8vh;
-  right: 7vw;
-}
-
-.cell4 {
-  bottom: 7vh;
-  left: 7vw;
-}
-
-.cell5 {
-  bottom: 7vh;
-  left: 37.5vw;
-}
-
-.cell6 {
-  bottom: 7vh;
-  right: 7vw;
-}
-
 .fixed {
-  z-index: 1500;
-  width: 25vw;
-  height: 38.5vh;
-  position: fixed;
+  /* z-index: 1500; */
+  /* width: 25vw;
+  height: 38.5vh; */
+  /* position: fixed; */
   margin: 0;
   background-color: white;
   border-radius: 10px;
   padding: 0.8rem;
   overflow: auto;
+  margin: 1rem;
+  /* width: 26rem;*/
+  /* min-height: 20rem; */
+  height: 26rem;
+  /* min-height: 400px; */
+  flex-grow: 1;
 }
 
 .grid {
-  z-index: 1500;
   display: grid;
-  grid-template-rows: 1fr 1fr;
+  /* grid-template-rows: 1fr 1fr; */
   grid-template-columns: 1fr 1fr 1fr;
-  padding: 3rem;
-  width: 100vw;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  left: 0;
+  /* display: flex;
+  flex-wrap: wrap; */
+  overflow: scroll;
+  /* padding: 2rem 1rem; */
+  /* width: 90vw; */
+  height: 80vh;
 }
 
 .icon {
@@ -91,4 +54,28 @@
 .characterArea {
   display: flex;
   flex-wrap: wrap;
+}
+
+.backButton {
+  justify-content: center;
+  margin: auto;
+  display: flex;
+}
+
+.main {
+  padding-right: 1rem;
+  /* flex-shrink: 5; */
+  padding-top: 1rem;
+}
+
+@media (max-width: 1200px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
 }

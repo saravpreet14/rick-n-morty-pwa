@@ -7,6 +7,11 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  background-color: #fff;
+}
+
+body::backdrop {
+  background-color: #fff;
 }
 
 a {
@@ -30,13 +35,18 @@ a {
   border-radius: 4%;
   overflow: hidden;
   height: 300px;
+  cursor: pointer;
+  border-right: 3px solid #fff;
+  border-bottom: 3px solid #fff;
+  border-bottom-right-radius: 5%;
 }
 
 .MuiGridListTile-tile:hover {
-  cursor: pointer;
-  border-right: 3px solid black;
-  border-bottom: 3px solid black;
-  border-bottom-right-radius: 5%;
+  border-color: black;
+}
+
+.MuiGridListTileBar-title {
+  height: auto;
 }
 
 /* .MuiToolbar-root {
@@ -50,3 +60,10 @@ a {
     margin-bottom: 2vh;
   }
 }
+
+/* @media (max-width: 1000px) {
+  .MuiGridListTile-root {
+    max-height: 200px;
+    max-width: 200px;
+  }
+} */

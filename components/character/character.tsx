@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import styles from "../../styles/MyCharacter.module.css";
+import styles from "./MyCharacter.module.css";
 import { useQuery, gql } from "@apollo/client";
 import Spinner from "../../components/spinner/spinner";
 import { Button } from "@material-ui/core";

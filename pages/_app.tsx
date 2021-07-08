@@ -6,10 +6,11 @@ import {
   useQuery,
   gql,
 } from "@apollo/client";
-import { AppProps } from "next/app";
+import { AppProps,NextWebVitalsMetric } from "next/app";
 import Head from "next/head";
 import { onError } from "@apollo/client/link/error";
 import { Provider } from "next-auth/client";
+import axios from 'axios';
 // const client = new ApolloClient({
 //   uri: "https://48p1r2roz4.sse.codesandbox.io",
 //   cache: new InMemoryCache(),
@@ -20,6 +21,39 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
   // link: errorLink,
 });
+
+
+export function reportWebVitals(metric: NextWebVitalsMetric) {
+  switch (metric.name) {
+    case 'FCP':
+      console.log("FCP",metric);
+      axios.post(`https://ricky-and-morty-project-default-rtdb.asia-southeast1.firebasedatabase.app/NextApp/${metric.name}.json`, metric.value);
+      break
+    case 'LCP':
+      // handle LCP results
+      console.log("LCP",metric);
+      axios.post(`https://ricky-and-morty-project-default-rtdb.asia-southeast1.firebasedatabase.app/NextApp/${metric.name}.json`, metric.value);
+      break
+    case 'CLS':
+      // handle CLS results
+      console.log("CLS",metric);
+      axios.post(`https://ricky-and-morty-project-default-rtdb.asia-southeast1.firebasedatabase.app/NextApp/${metric.name}.json`, metric.value);
+      break
+    case 'FID':
+      // handle FID results
+      console.log("FID",metric);
+      axios.post(`https://ricky-and-morty-project-default-rtdb.asia-southeast1.firebasedatabase.app/NextApp/${metric.name}.json`, metric.value);
+      break
+    case 'TTFB':
+      // handle TTFB results
+      console.log("TTFB",metric);
+      axios.post(`https://ricky-and-morty-project-default-rtdb.asia-southeast1.firebasedatabase.app/NextApp/${metric.name}.json`, metric.value);
+      break
+    default:
+      break
+  }
+  
+}
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (

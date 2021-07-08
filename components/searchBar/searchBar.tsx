@@ -26,15 +26,16 @@ const styles = makeStyles((theme) => ({
 export default function SearchBar(props: {
   search: (event: React.FormEvent<HTMLFormElement>) => void,
   value: string,
+  change: (string) => void
 }) {
+  // console.log('search: ', props.value)
   const classes = styles();
 
-  const [value, setValue] = useState(props.value);
-  console.log(props.value,value)
+  // const [value, setValue] = useState(props.value);
 
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
-    console.log(event.target.value, "count this");
-    setValue(event.target.value);
+    // setValue(event.target.value);
+    props.change(event.target.value)
   }
 
   return (
@@ -50,7 +51,7 @@ export default function SearchBar(props: {
           id="outlined-size-normal"
           variant="outlined"
           style={{ width: "20rem" }}
-          value={value}
+          value={props.value}
           onChange={handleChange}
         />
         <IconButton

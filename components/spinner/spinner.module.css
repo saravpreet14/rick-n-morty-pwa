@@ -5,7 +5,6 @@
   justify-content: center;
   -webkit-box-align: center;
   -webkit-box-pack: center;
-  justify-content: center;
 }
 
 .ring {
@@ -28,6 +27,30 @@
   animation: ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
   border-color: black transparent transparent transparent;
 }
+
+@media (max-width: 1100px) {
+  .ring {
+    display: flex;
+    flex-grow: 1;
+    position: relative;
+    width: 5em;
+    height: 5em;
+    justify-content: center;
+  }
+  .ring div {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    width: 4em;
+    height: 4em;
+    margin: 0.5em;
+    border: 0.5em solid black;
+    border-radius: 50%;
+    animation: ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    border-color: black transparent transparent transparent;
+  }
+}
+
 .ring div:nth-child(1) {
   animation-delay: -0.45s;
 }

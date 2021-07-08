@@ -13,7 +13,7 @@ export default function Episodes(props) {
         },
     }
   `;
-
+  
     const ids:number[] = Array.from({length: 41}, (_, i) => i + 1)
     const { loading, error, data } = useQuery(Episodes_data, {
     variables: {

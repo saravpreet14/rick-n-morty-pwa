@@ -22,7 +22,16 @@
 }
 
 .signInMessage {
-    text-align: center;
-    font-family: "Kaushan Script", cursive;
-    font-size: 5rem;
+  text-align: center;
+  font-family: "Kaushan Script", cursive;
+  font-size: 5rem;
+}
+
+@media (max-width: 1000px) {
+  .authButton {
+    font-size: 1.4rem;
+  }
+  .siteName {
+    font-size: 1.6rem;
+  }
 }
