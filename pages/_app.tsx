@@ -11,6 +11,7 @@ import Head from "next/head";
 import { onError } from "@apollo/client/link/error";
 import { Provider } from "next-auth/client";
 import axios from 'axios';
+import printReadings from '../readings.js'
 // const client = new ApolloClient({
 //   uri: "https://48p1r2roz4.sse.codesandbox.io",
 //   cache: new InMemoryCache(),
@@ -22,38 +23,15 @@ const client = new ApolloClient({
   // link: errorLink,
 });
 
+const readingsDatabse = "https://rick-and-morty-22d4d-default-rtdb.firebaseio.com/NextApp";
 
-export function reportWebVitals(metric: NextWebVitalsMetric) {
-  switch (metric.name) {
-    case 'FCP':
-      console.log("FCP",metric);
-      axios.post(`https://ricky-and-morty-project-default-rtdb.asia-southeast1.firebasedatabase.app/NextApp/${metric.name}.json`, metric.value);
-      break
-    case 'LCP':
-      // handle LCP results
-      console.log("LCP",metric);
-      axios.post(`https://ricky-and-morty-project-default-rtdb.asia-southeast1.firebasedatabase.app/NextApp/${metric.name}.json`, metric.value);
-      break
-    case 'CLS':
-      // handle CLS results
-      console.log("CLS",metric);
-      axios.post(`https://ricky-and-morty-project-default-rtdb.asia-southeast1.firebasedatabase.app/NextApp/${metric.name}.json`, metric.value);
-      break
-    case 'FID':
-      // handle FID results
-      console.log("FID",metric);
-      axios.post(`https://ricky-and-morty-project-default-rtdb.asia-southeast1.firebasedatabase.app/NextApp/${metric.name}.json`, metric.value);
-      break
-    case 'TTFB':
-      // handle TTFB results
-      console.log("TTFB",metric);
-      axios.post(`https://ricky-and-morty-project-default-rtdb.asia-southeast1.firebasedatabase.app/NextApp/${metric.name}.json`, metric.value);
-      break
-    default:
-      break
+ export function reportWebVitals(metric: NextWebVitalsMetric) {
+  if (['FCP', 'LCP', 'CLS', 'FID', 'TTFB'].includes(metric.name)) {
+    console.log(metric.name, metric.value);
+    axios.post(`${readingsDatabse}/${metric.name}.json`, metric.value);
+    printReadings(readingsDatabse + '.json');
   }
-  
-}
+ }
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (

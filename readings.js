@@ -1,60 +1,28 @@
 const fetch = require("node-fetch");
 
-async function readings() {
-  const response = await fetch(
-    "https://ricky-and-morty-project-default-rtdb.asia-southeast1.firebasedatabase.app/NextApp.json"
-  );
-  var data = await response.json();
-
-  var obj = data.CLS;
+function print(data, name) {
+  if (!data[name]) return;
+  var obj = data[name];
   var result = Object.keys(obj).map((key) => {
     return obj[key];
   });
   console.log(
-    "Avg CLS of",
+    `Avg ${name} of`,
     result.length,
     "readings is",
-    result.reduce((a, b) => a + b, 0) / result.length
-  );
-  var obj = data.FCP;
-  var result = Object.keys(obj).map((key) => {
-    return obj[key];
-  });
-  console.log(
-    "Avg FCP of",
-    result.length,
-    "readings is",
-    result.reduce((a, b) => a + b, 0) / result.length
-  );
-  var obj = data.FID;
-  var result = Object.keys(obj).map((key) => {
-    return obj[key];
-  });
-  console.log(
-    "Avg FID of",
-    result.length,
-    "readings is",
-    result.reduce((a, b) => a + b, 0) / result.length
-  );
-  var obj = data.LCP;
-  var result = Object.keys(obj).map((key) => {
-    return obj[key];
-  });
-  console.log(
-    "Avg LCP of",
-    result.length,
-    "readings is",
-    result.reduce((a, b) => a + b, 0) / result.length
-  );
-  var obj = data.TTFB;
-  var result = Object.keys(obj).map((key) => {
-    return obj[key];
-  });
-  console.log(
-    "Avg TTFB of",
-    result.length,
-    "readings is",
-    result.reduce((a, b) => a + b, 0) / result.length
+    (result.reduce((a, b) => a + b, 0) / result.length).toFixed(2)
   );
 }
-readings();
+
+export default async function readings(url) {
+  const response = await fetch(url);
+  var data = await response.json();
+
+  if (!data) return;
+
+  print(data, "CLS");
+  print(data, "FID");
+  print(data, "LCP");
+  print(data, "TTFB");
+  print(data, "FCP");
+}
