@@ -13,7 +13,7 @@ export default function Episodes(props) {
         },
     }
   `;
-  
+
     const ids:number[] = Array.from({length: 41}, (_, i) => i + 1)
     const { loading, error, data } = useQuery(Episodes_data, {
     variables: {
@@ -21,7 +21,7 @@ export default function Episodes(props) {
     },
     errorPolicy: "ignore",
     });
-    const [selectedEpisode, setEpisode] = useState(null);
+    // const [selectedEpisode, setEpisode] = useState(null);
 
     if (loading) return <Spinner />;
     if (error) return <Error />;
@@ -30,15 +30,15 @@ export default function Episodes(props) {
 
     return (
         <div className={styles.main}>
-            <br/><br/><br/><br/><br/><br/>
+            <br/><br/>
             {episodesData.map(episode => {
                 return (
-                    <div className={styles.listElement} onClick={() => setEpisode(Number(episode.id) - 1)} key={episode.id}>
+                    <div className={[styles.listElement, props.selected === episode.id ? styles.active : ''].join(' ')} onClick={() => props.select(episodesData[Number(episode.id) - 1])} key={episode.id}>
                         {`${episode.name} - ${episode.episode}`}
                     </div>
                 )
             })}
-            { selectedEpisode !== null ? <Widgets data={episodesData[selectedEpisode]} close={() => setEpisode(null)} /> : null }
+            {/* { selectedEpisode !== null ? <Widgets data={episodesData[selectedEpisode]} close={() => setEpisode(null)} /> : null } */}
         </div>
     );
 }
