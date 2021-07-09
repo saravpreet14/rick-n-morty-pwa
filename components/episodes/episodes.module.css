@@ -7,6 +7,7 @@
   margin-left: 5px;
   /* flex-grow: 5; */
   /* flex-shrink: 3; */
+  background-color: lightblue;
 }
 
 .listElement {
@@ -43,6 +44,11 @@
   }
   .listElement {
     min-width: 30vw;
+    max-height: 10vh;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    /* max-width: 200px; */
     float: left;
   }
 }

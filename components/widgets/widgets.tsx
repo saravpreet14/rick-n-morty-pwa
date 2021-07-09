@@ -46,7 +46,7 @@ export default function Widgets(props) {
             </div>
 
             <div className={[styles.fixed, styles.cell3].join(' ')} >
-                <Home imageSize={{width: 100, height: 100}} buttonSize="small" />
+                <Home imageSize={{width: 100, height: 100}} buttonSize="small" isWidget />
             </div>
 
             <div className={[styles.fixed, styles.cell4].join(' ')} >
