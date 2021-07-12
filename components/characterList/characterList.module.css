@@ -1,13 +1,81 @@
+.root {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  overflow: hidden;
+  margin-top: 6vh; /*: "2vh";*/
+  /* background-color : theme.palette.background.paper; */
+  font-size: 1rem; /*: '0.6rem';*/
+}
+.Wroot {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  overflow: hidden;
+  margin-top: 2vh;
+  /* background-color : theme.palette.background.paper; */
+  font-size: 0.6rem;
+}
+.gridList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
 .gridTile {
-  margin: 1.5rem;
+  margin: 1.5rem; /* : "0.5rem"; */
   height: 300px;
   border-radius: 4%;
   overflow: hidden;
   border-right: 3px solid #fff;
   border-bottom: 3px solid #fff;
-  cursor: pointer;
 }
-
+.WgridTile {
+  margin: 0.5rem;
+  height: 100px;
+  border-radius: 4%;
+  overflow: hidden;
+  border-right: 3px solid #fff;
+  border-bottom: 3px solid #fff;
+}
 .gridTile:hover {
   border-color: black;
+  cursor: pointer;
+}
+.WgridTile:hover {
+  border-color: black;
+}
+.gridListTile {
+  height: 48px !important;
+}
+.title {
+  font-size: 1.5rem;
+}
+.loadSize {
+  height: 350px;
+  width: 300px;
+}
+.noData {
+  text-align: center;
+  font-size: 2rem;
+}
+
+@media (max-width: 580px) {
+  .root {
+    margin-top: 2vh;
+    font-size: 0.6rem;
+  }
+  .gridTile {
+    margin: 0.5rem;
+    height: 100px;
+  }
+  .loadSize {
+    height: 100px;
+    width: 100px;
+  }
+  .gridListTile {
+    height: auto !important;
+  }
+  .title {
+    font-size: 0.6rem;
+  }
 }

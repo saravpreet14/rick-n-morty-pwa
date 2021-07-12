@@ -4,7 +4,7 @@ import Link from "next/link";
 import styles from "./MyCharacter.module.css";
 import { useQuery, gql } from "@apollo/client";
 import Spinner from "../../components/spinner/spinner";
-import { Button } from "@material-ui/core";
+import { Button, CircularProgress } from "@material-ui/core";
 import Error from "../error/error";
 
 interface dataFromApi {
@@ -56,7 +56,7 @@ export default function MyCharacter(props: { params: { id: string } }) {
     variables: { ids: id },
   });
   const { loading, error, data } = responseData;
-  if (loading) return <Spinner />;
+  if (loading) return <div className={styles.spinner} ><CircularProgress /></div>;
   if (error) return <Error />;
 
   const { name, image, gender, location, origin, species, status } =
@@ -98,7 +98,7 @@ export default function MyCharacter(props: { params: { id: string } }) {
         <br />
         <br />
 
-        <Link href="/">
+        <Link passHref href="/">
           <Button variant="contained" color="primary" size="large">
             <strong>Back</strong>
           </Button>

@@ -7,6 +7,7 @@ import {
 import { useState } from "react";
 import SearchIcon from "@material-ui/icons/Search";
 import React from "react";
+import customStyles from './search.module.css';
 
 const styles = makeStyles((theme) => ({
   iconButton: {
@@ -26,7 +27,8 @@ const styles = makeStyles((theme) => ({
 export default function SearchBar(props: {
   search: (event: React.FormEvent<HTMLFormElement>) => void,
   value: string,
-  change: (string) => void
+  change: (string) => void,
+  isEpisode?: boolean
 }) {
   // console.log('search: ', props.value)
   const classes = styles();
@@ -39,7 +41,7 @@ export default function SearchBar(props: {
   }
 
   return (
-    <div>
+    <div className={props.isEpisode ? customStyles.episodeMain : null} >
       <form
         className={classes.root}
         noValidate
@@ -59,7 +61,7 @@ export default function SearchBar(props: {
           className={classes.iconButton}
           aria-label="search"
         >
-          <SearchIcon fontSize="large" />
+          <SearchIcon fontSize={ props.isEpisode ? "inherit" : "large" } />
         </IconButton>
       </form>
     </div>

@@ -3,19 +3,14 @@ import {
   ApolloClient,
   InMemoryCache,
   ApolloProvider,
-  useQuery,
-  gql,
 } from "@apollo/client";
 import { AppProps,NextWebVitalsMetric } from "next/app";
 import Head from "next/head";
 import { onError } from "@apollo/client/link/error";
 import { Provider } from "next-auth/client";
-import axios from 'axios';
+// import axios from 'axios';
 // import printReadings from '../readings.js'
-// const client = new ApolloClient({
-//   uri: "https://48p1r2roz4.sse.codesandbox.io",
-//   cache: new InMemoryCache(),
-// });
+
 
 const client = new ApolloClient({
   uri: "https://rickandmortyapi.com/graphql/",

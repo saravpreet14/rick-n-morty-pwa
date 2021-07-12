@@ -39,12 +39,27 @@
   overflow: scroll;
 }
 
+.spinner {
+  display: flex;
+  justify-content: center;
+  margin-top: 20vh;
+}
+
+.homeWidget {
+  height: 100%;
+  overflow: scroll;
+}
+
 @media (max-width: 1000px) {
   .partition {
     grid-template-columns: 1fr;
     /* grid-template-rows: 1fr 100fr; */
   }
+  .homeMain {
+    height: 83vh;
+  }
 }
+
 /* @media (max-width: 800px) {
   .partition {
     grid-template-columns: 4fr 7fr;

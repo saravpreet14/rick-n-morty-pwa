@@ -68,6 +68,12 @@
   padding-top: 1rem;
 }
 
+.spinner {
+  display: flex;
+  justify-content: center;
+  margin-top: 20vh;
+}
+
 @media (max-width: 1200px) {
   .grid {
     grid-template-columns: 1fr 1fr;
@@ -81,7 +87,7 @@
 }
 
 @media (max-width: 1000px) {
-  .grid {
+  /* .grid {
     height: 70vh;
-  }
+  } */
 }

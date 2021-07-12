@@ -49,6 +49,11 @@
   border-color: #494949 !important;
   transition: all 0.3s ease 0s;
 }
+.spinner {
+  display: flex;
+  justify-content: center;
+  margin-top: 20vh;
+}
 @media (max-width: 650px) {
   .profile {
     grid-template-columns: auto;

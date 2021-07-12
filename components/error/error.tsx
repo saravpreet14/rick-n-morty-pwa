@@ -4,7 +4,7 @@ import { Button } from '@material-ui/core';
 
 export default function error() {
   return (
-    <>
+    <div>
       <br />
       <br />
       <br />
@@ -12,6 +12,6 @@ export default function error() {
       <div style={{display: 'flex', justifyContent: 'center'}} >
       <Button variant="contained" color="primary" size="large" onClick={() => Router.reload()}>Retry</Button>
       </div>
-    </>
+    </div>
   );
 }

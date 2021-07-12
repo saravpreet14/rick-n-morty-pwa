@@ -13,48 +13,21 @@ export default function TitlebarGridList(props: {
   imageSize: {
     width: number;
     height: number;
-  }
+  };
+  isWidget: boolean;
 }) {
-  const styles = makeStyles((theme) => ({
-    root: {
-      display: "flex",
-      flexWrap: "wrap",
-      justifyContent: "center",
-      overflow: "hidden",
-      marginTop: props.imageSize.height === 300 ? "6vh" : "2vh",
-      backgroundColor: theme.palette.background.paper,
-      fontSize: props.imageSize.height === 300 ? '1rem' : '0.6rem',
-    },
-    gridList: {
-      // width: "90vw",
-      display: "flex",
-      flexWrap: "wrap",
-      justifyContent: "center",
-    },
-    gridTile: {
-      margin: props.imageSize.height === 300 ? "1.5rem" : "0.5rem",
-      height: `${props.imageSize.height}px`,
-      borderRadius: "4%",
-      overflow: "hidden",
-      borderRight: '3px solid #fff',
-      borderBottom: '3px solid #fff',
-    },
-    noData: {
-      textSlign: "center",
-      fontSize: "2rem",
-    },
-  }));
-  const classes = styles();
+
   
   const styleProps={style: { width: "auto", height: "auto" }};
 
   return (
-    <div className={classes.root}>
+    <div className={props.isWidget?customStyles.Wroot : customStyles.root}>
       {props.characters.length === 0 ? (
-        <h2 className={classes.noData}>Nothing to show</h2>
+        <h2 className={customStyles.noData}>Nothing to show</h2>
       ) : (
-        <GridList className={classes.gridList}>
+        <GridList className={customStyles.gridList}>
           {props.characters.map((character) => (
+            // <div className={customStyles.loadSize} key={character.id}>
             <Link
               key={character.id}
               href={
@@ -66,16 +39,31 @@ export default function TitlebarGridList(props: {
               {...styleProps}
               passHref
             >
-              <GridListTile className={[customStyles.gridTile, classes.gridTile].join(' ')} key={character.id}>
+              {props.isWidget?(
+              <GridListTile className={customStyles.WgridTile}>
                 <Image
                   width={props.imageSize.width}
                   height={props.imageSize.height}
                   src={character.image}
                   alt={character.name}
                 />
-                <GridListTileBar style={{height: props.imageSize.height === 300 ? '48px' : 'auto'}} title={<div style={{fontSize: props.imageSize.height === 300 ? '1rem' : '0.6rem'}}>{character.name}</div>} />
+                <GridListTileBar style={{height: 'auto'}} title={<div style={{fontSize:'0.6rem'}}>{character.name}</div>} />
+              </GridListTile>):(
+              // <div className={customStyles.loadSize}>
+              <GridListTile className={customStyles.gridTile}>
+                <div className={customStyles.loadSize}>
+                <Image
+                  width={props.imageSize.width}
+                  height={props.imageSize.height}
+                  src={character.image}
+                  alt={character.name}
+                /></div>
+                <GridListTileBar  className={customStyles.gridListTile} title={<div className={customStyles.title}>{character.name}</div>} />
               </GridListTile>
+              // </div>
+              )}
             </Link>
+            // </div>
           ))}
         </GridList>
       )}
