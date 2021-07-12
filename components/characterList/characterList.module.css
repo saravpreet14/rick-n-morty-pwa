@@ -66,11 +66,11 @@
   }
   .gridTile {
     margin: 0.5rem;
-    height: 100px;
+    height: 85px;
   }
   .loadSize {
-    height: 100px;
-    width: 100px;
+    height: 85px;
+    width: 85px;
   }
   .gridListTile {
     height: auto !important;
