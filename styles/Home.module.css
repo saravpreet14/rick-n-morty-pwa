@@ -32,6 +32,7 @@
 .partition {
   display: grid;
   grid-template-columns: 2fr 8fr;
+  height: 93vh;
 }
 
 .homeMain {
@@ -42,7 +43,7 @@
 .spinner {
   display: flex;
   justify-content: center;
-  margin-top: 20vh;
+  /* margin-top: 20vh; */
 }
 
 .homeWidget {
@@ -53,11 +54,15 @@
 @media (max-width: 1000px) {
   .partition {
     grid-template-columns: 1fr;
-    /* grid-template-rows: 1fr 100fr; */
+    grid-template-rows: 100px 1fr;
   }
   .homeMain {
     height: 83vh;
   }
+}
+
+.progress {
+  margin: auto;
 }
 
 /* @media (max-width: 800px) {

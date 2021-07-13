@@ -33,7 +33,12 @@
 .spinner {
   display: flex;
   justify-content: center;
-  margin-top: 20vh;
+  /* margin-top: 20vh; */
+  /* max-height: ; */
+}
+
+.progress {
+  margin: auto;
 }
 
 @media (max-width: 1000px) {
@@ -59,5 +64,6 @@
   }
   .spinner {
     margin-top: 2vh;
+    max-height: 100px;
   }
 }

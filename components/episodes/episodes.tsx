@@ -35,7 +35,8 @@ export default function Episodes(props) {
         loadMore();
     }, [data]);
 
-    if (loading) return <div className={styles.spinner} ><CircularProgress /></div>;
+    if (loading) 
+    return <div className={styles.spinner} ><CircularProgress className={styles.progress} /></div>;
     if (error) return <Error />;
 
     function loadMore() {

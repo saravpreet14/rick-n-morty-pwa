@@ -78,8 +78,9 @@ export default function Widgets(props) {
                <Forum/>
             </div>
 
-                <div className={[styles.fixed, styles.cell5].join(' ')} >
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab corrupti reprehenderit ipsam quasi error minima praesentium, odit eveniet quaerat nesciunt quibusdam, fugiat sunt aspernatur asperiores doloremque a nemo distinctio voluptatem.
+            <div className={[styles.fixed, styles.cell5].join(' ')} >
+                    <h1>Imdb Rating</h1>
+                    <p style={{fontSize: '1.3rem'}}>The {EpisodeData.episode} of Rick and Morty, named {EpisodeData.name} was rated <strong>{(8 + Math.random()*2).toFixed(1)} out of 10</strong></p>
                 </div>
 
                 <div className={[styles.fixed, styles.cell6].join(' ')} >
