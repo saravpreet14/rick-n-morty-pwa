@@ -60,7 +60,7 @@ export default function Home(props:{imageSize:{width: number, height: number}, b
     errorPolicy: "ignore",
   });
 
-  if (false || loading) {
+  if (loading) {
     return (
       <div className={styles.skeletonHome} >
         <div className={styles.skeletonSearch} >
@@ -114,9 +114,9 @@ export default function Home(props:{imageSize:{width: number, height: number}, b
     set_filter(query);
     
     fetchMore({
-      variables: { page: null, filter: { name: query } },
+      variables: { page: 1, filter: { name: query } },
       updateQuery: (prevResult, { fetchMoreResult }) => {
-        nextPageToLoaded = fetchMoreResult.info.next;
+        nextPageToLoaded = fetchMoreResult.characters.info.next;
         return fetchMoreResult;
       },
     }).catch(error => null)

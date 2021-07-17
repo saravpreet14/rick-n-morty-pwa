@@ -9,7 +9,7 @@ import Head from "next/head";
 import { onError } from "@apollo/client/link/error";
 import { Provider } from "next-auth/client";
 // import axios from 'axios';
-// import printReadings from '../readings.js'
+// import printReadings from '../lib/readings.js'
 
 
 const client = new ApolloClient({
