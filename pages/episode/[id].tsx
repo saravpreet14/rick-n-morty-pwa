@@ -1,35 +1,22 @@
-import Character from "../../components/character/character";
-import { signIn, signOut, useSession } from "next-auth/client";
-import Navbar from "../../components/navbar/navbar";
-import { GetServerSideProps } from "next";
 import Widgets from '../../components/widgets/widgets';
+import Navbar from "../../components/navbar/navbar";
+import { useRouter } from 'next/router';
+import Episodes from '../../components/episodes/episodes';
+import styles from '../../styles/Home.module.css';
 
-export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-  return {
-    props: {
-      params,
-    },
-  };
-};
-
-export default function MyCharacter({
-  params,
-}: {
-  params: {
-    id: string;
-  };
-}) {
-  // console.log(props);
-  const [session, loading] = useSession();
-  var authFunction;
-  if (session) authFunction = signOut;
-  else authFunction = signIn;
+export default function MyCharacter(props) {
+  const router = useRouter()
+  let id:string;
+  if(typeof router.query.id === 'string') id = router.query.id;
+  if(!id) id = '1';
+  console.log(id);
 
   return (
-    <>
-      <Navbar auth={() => authFunction()} isAuth={session ? true : false}>
-        <Widgets {...{ params }} />
-      </Navbar>
-    </>
+    <Navbar>
+      <div className={styles.partition} >
+        <Episodes selected={id} placeholder="Search Episode Name"/>
+        <Widgets params={{id: id}} />
+      </div>
+    </Navbar>
   );
 }

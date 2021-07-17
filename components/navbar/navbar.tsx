@@ -1,35 +1,46 @@
 import styles from "./navbar.module.css";
-import Router from "next/router";
-import { CssBaseline, AppBar, Toolbar } from "@material-ui/core";
+import { useRouter } from "next/router";
+import Image from 'next/image';
+import React, { useState } from 'react';
+import { isAuth, logout } from '../../lib/auth';
+import Link from 'next/link';
 
-export default function navbar(props) {
+export default function Navbar(props) {
+  const Router = useRouter();
+  const [auth, setAuth] = useState(false); 
+  const [path, setPath] = useState('');
+  if(typeof window !== 'undefined' && path !== Router.pathname) {
+    setPath(Router.pathname);
+    isAuth().then(isValid => {
+      if(isValid) setAuth(true);
+      else if(Router.pathname !== '/auth') Router.push('/auth');
+    });
+  }
+
   return (
-    <>
-      <CssBaseline />
-      <AppBar>
-        <Toolbar>
-          <span className={styles.siteName} onClick={() => {
-              if (Router.pathname === "/") Router.reload();
-              else Router.push("/");
-            }}>
-            Rick and Morty
+    <div className={styles.main} >
+      <div className={styles.head} >
+        <div className={styles.icon} onClick={() => {
+          if(Router.pathname === '/') Router.reload();
+          else Router.push('/');
+        }} >
+          <Image src='/rickMorty.svg' width='70' height='70' alt="logo"/>
+        </div>
+        {auth ? (<span className={styles.navigation} >
+          <Link href='/characters' passHref >
+            <span className={[styles.navlink, path.indexOf('character') !== -1 ? styles.active : null].join(' ')} >Characters</span>
+          </Link>
+          <Link href='/episode/1' passHref >
+            <span className={[styles.navlink, path.indexOf('episode') !== -1 ? styles.active : null].join(' ')} >Episodes</span>
+          </Link>
+        </span>): null}
+        {auth ? (
+          <span className={styles.icon} style={{float: 'right'}} onClick={() => logout().then(() => Router.push('/auth'))} >
+            <Image src='/logout.svg' width='70' height='70' layout='responsive' alt="logout" />
           </span>
-          <span className={styles.authButton} onClick={props.auth}>
-            {props.isAuth ? "Logout" : "Sign In"}
-          </span>
-        </Toolbar>
-      </AppBar>
-      <Toolbar id="back-to-top-anchor" />
-      {props.isAuth ? (
-        props.children
-      ) : (
-        <>
-          <br />
-          <br />
-          <br />
-          <h1 className={styles.signInMessage}>Sign In to continue</h1>
-        </>
-      )}
-    </>
+        ) : null}
+      </div>
+      <div className={styles.body} >{auth || path === '/auth' ? props.children : null }</div>
+    </div>
   );
 }

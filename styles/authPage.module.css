@@ -10,3 +10,20 @@
 .marginTop {
     margin-top: 100px;
 }
+
+.main {
+    margin-top: 20vh;
+}
+
+.button {
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+    display: flex;
+}
+
+.heading {
+    /* font-family: "Kaushan Script"; */
+    font-size: 2rem;
+    text-align: center;
+}

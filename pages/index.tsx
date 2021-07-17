@@ -1,27 +1,14 @@
-import Home from "../components/home/home";
-import { signIn, signOut, useSession } from "next-auth/client";
-import { useState } from 'react';
 import Navbar from "../components/navbar/navbar";
-import Episodes from '../components/episodes/episodes';
-import Widgets from '../components/widgets/widgets';
-import styles from '../styles/Home.module.css';
+import { useRouter } from 'next/router';
 
 export default function SignInPage() {
-  const [session, loading] = useSession();
-
-  var authFunction;
-  if (session) authFunction = signOut;
-  else authFunction = signIn;
-  
+  const Router = useRouter();
+  if(typeof window !== 'undefined') {
+    Router.push('/characters');
+  }
   return (
     <>
-      <Navbar auth={() => authFunction()} isAuth={session ? true : false}>      
-        <div className={styles.partition} >
-          <Episodes />
-          <Home imageSize={{width: 300, height: 300}} buttonSize="large" isWidget={false} />
-          {/* {episodeData ? <Widgets data={episodeData} back={() => {staticEpisodeData=null; setEpisode(null);}} /> : <Home imageSize={{width: 300, height: 300}} buttonSize="large" isWidget={false} />} */}
-        </div>
-      </Navbar>
+      <Navbar />
     </>
   );
 }

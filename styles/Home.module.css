@@ -31,34 +31,24 @@
 
 .partition {
   display: grid;
-  grid-template-columns: 2fr 8fr;
-  height: 93vh;
+  grid-template-columns: 374px 8fr;
+  height: 100%;
 }
 
 .homeMain {
-  height: 95vh;
-  overflow: scroll;
+  /* height: 95vh; */
+  height: 100%;
+  overflow-y: scroll;
 }
 
 .spinner {
   display: flex;
-  justify-content: center;
-  /* margin-top: 20vh; */
+  margin-top: 25vh;
 }
 
 .homeWidget {
   height: 100%;
   overflow: scroll;
-}
-
-@media (max-width: 1000px) {
-  .partition {
-    grid-template-columns: 1fr;
-    grid-template-rows: 100px 1fr;
-  }
-  .homeMain {
-    height: 83vh;
-  }
 }
 
 .progress {
@@ -70,3 +60,39 @@
     grid-template-columns: 4fr 7fr;
   }
 } */
+
+.skeletonSearch {
+  width: 90%;
+  max-width: 400px;
+  min-width: 150px;
+  padding: 15px;
+}
+
+.skeletonImage {
+  margin: 1.5rem;
+}
+
+.skeletonList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 10px 8%;
+}
+
+.skeletonHome {
+  display: grid;
+  place-items: center;
+}
+
+@media (max-width: 1000px) {
+  .partition {
+    grid-template-columns: 1fr;
+    grid-template-rows: 70px 1fr;
+  }
+  .skeletonImage {
+    max-width: 140px;
+    max-height: 165px;
+    margin: 0.8rem;
+    overflow: hidden;
+  }
+}

@@ -1,8 +1,10 @@
 import styles from "../navbar/navbar.module.css";
-import Router from 'next/router';
+import React from 'react';
+import { useRouter } from 'next/router';
 import { Button } from '@material-ui/core';
 
-export default function error() {
+export default function Error() {
+  const Router = useRouter();
   return (
     <div>
       <br />

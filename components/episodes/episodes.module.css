@@ -1,26 +1,27 @@
 .main {
   font-size: 1.3rem;
-  height: 95vh;
-  overflow: scroll;
-  /* max-width: 300px; */
+  overflow-y: scroll;
   margin: 0;
-  padding-left: 5px;
-  /* flex-grow: 5; */
-  /* flex-shrink: 3; */
+  padding: 0 18px;
   background-color: lightblue;
 }
 
 .listElement {
   cursor: pointer;
   background-color: #fff;
-  margin: 1rem;
+  margin: 1rem auto;
   margin-left: 0;
   padding: 1rem;
   border-radius: 10px;
 }
 
+.listElementSkeleton {
+  margin: 1rem auto;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
 .listElement:hover {
-  /* cursor: pointer; */
   background-color: #3f51b5;
   color: #fff;
 }
@@ -33,11 +34,18 @@
 .spinner {
   display: flex;
   justify-content: center;
-  /* margin-top: 20vh; */
-  /* max-height: ; */
 }
 
 .progress {
+  margin: auto;
+}
+
+.searchSkeleton {
+  width: 100%;
+  max-width: 400px;
+  min-width: 170px;
+  padding: 15px 0;
+  /* display: grid; */
   margin: auto;
 }
 
@@ -46,24 +54,38 @@
     font-size: 0.8rem;
   }
   .main {
-    /* max-height: 20vh; */
     height: auto;
     width: 100vw;
     overflow-x: scroll;
     display: flex;
-    flex-direction: row;
+    position: sticky;
+    top: 0;
+    z-index: 200;
+    padding: 0;
+    /* flex-direction: row; */
   }
   .listElement {
     min-width: 30vw;
-    max-height: 10vh;
+    /* max-height: 50px; */
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
-    /* max-width: 200px; */
     float: left;
+    margin: 10px !important;
+  }
+  .listElementSkeleton {
+    min-width: 30vw;
+    /* max-height: 50px; */
+    overflow: hidden;
+    white-space: nowrap;
+    float: left;
+    margin: 10px !important;
   }
   .spinner {
     margin-top: 2vh;
-    max-height: 100px;
+    max-height: 70px;
+  }
+  .searchSkeleton {
+    padding: 10px;
   }
 }

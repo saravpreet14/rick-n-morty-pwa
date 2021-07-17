@@ -1,0 +1,1 @@
+(()=>{"use strict";self.addEventListener("message",(async e=>{e.data&&"CACHE_NEW_ROUTE"===e.data.action&&caches.open("others").then((t=>t.match(e.source.url).then((a=>{if(void 0===a)return t.add(e.source.url)}))))}))})();

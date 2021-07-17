@@ -30,7 +30,7 @@ const client = new ApolloClient({
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <Provider session={pageProps.session}>
+    // <Provider session={pageProps.session}>
       <ApolloProvider client={client}>        <Head>
           <meta charSet="utf-8" />
           <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
@@ -60,7 +60,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         </Head>
         <Component {...pageProps} />
       </ApolloProvider>
-    </Provider>
+    // {/* </Provider> */}
   );
 }
 

@@ -1,4 +1,4 @@
-.authButton {
+/* .authButton {
   float: right;
   margin: 1vh 0;
   text-align: right;
@@ -25,13 +25,91 @@
   text-align: center;
   font-family: "Kaushan Script", cursive;
   font-size: 5rem;
+} */
+
+.main {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.head {
+  height: 70px;
+  width: 100vw;
+  background-color: #3f51b5;
+  padding: 3px 20px;
+  text-align: center;
+}
+
+.body {
+  /* flex-shrink: 1; */
+  flex-grow: 1;
+  overflow-y: scroll;
+}
+
+.icon {
+  height: 48px;
+  width: 48px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  cursor: pointer;
+  margin: 8px 0;
+  float: left;
+  /* display: inline; */
+}
+
+.logout {
+  width: 64px;
+  height: 100%;
+  margin-right: 0 !important;
+  float: right;
+  cursor: pointer;
+}
+
+.navigation {
+  min-height: 64px;
+  margin: auto;
+  vertical-align: middle;
+  display: inline-grid;
+  grid-template-columns: 1fr 1fr;
+  place-items: center;
+  grid-gap: 1vw;
+  font-size: 2rem;
+  color: white;
+}
+
+.navlink {
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 8px;
+}
+
+.navlink:hover {
+  background-color: rgba(40, 28, 77, 0.3);;
+}
+
+.active {
+  /* color: orange; */
+  /* text-decoration: underline orange; */
+  background-color: rgba(40, 28, 77, 0.3);;
 }
 
 @media (max-width: 1000px) {
-  .authButton {
-    font-size: 1.4rem;
+  .head {
+    height: 50px;
+    padding: 3px 1vw;
   }
-  .siteName {
-    font-size: 1.6rem;
+  .logout {
+    width: 44px;
+  }
+  .navigation {
+    min-height: 44px;
+    font-size: 1.2rem;
+  }
+  .icon {
+    width: 36px;
+    height: 36px;
+    margin: 4px 0;
   }
 }

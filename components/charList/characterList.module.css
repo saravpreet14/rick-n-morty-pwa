@@ -1,0 +1,53 @@
+.main {
+  display: flex;
+  margin: 10px 8%;
+  margin-bottom: 0;
+  /* padding-top: 60px; */
+  /* top: 100px; */
+  margin-bottom: 0;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card {
+  border-radius: 10px;
+  padding: 0;
+  margin: 1.5rem;
+  overflow: hidden;
+  cursor: pointer;
+  max-width: 300px;
+  /* display: grid; */
+  grid-template-columns: 1fr;
+}
+.card:hover {
+  box-shadow: 0 0 15px gray;
+}
+
+.name {
+  background-color: rgba(20, 20, 20, 0.75);
+  margin: 0;
+  padding: 10px;
+  font-size: 1.3rem;
+  color: white;
+  margin-top: -3px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.image {
+  margin: 0;
+  padding: 0;
+  border-width: 0;
+}
+
+@media (max-width: 1000px) {
+  .card {
+    max-width: 140px;
+    margin: 0.8rem;
+  }
+  .name {
+    font-size: 0.8rem;
+    padding: 5px;
+  }
+}

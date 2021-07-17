@@ -1,41 +1,16 @@
 import Character from "../../components/character/character";
-import { signIn, signOut, useSession } from "next-auth/client";
 import Navbar from "../../components/navbar/navbar";
-import { GetServerSideProps } from "next";
+import { useRouter } from 'next/router';
 
-export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-  return {
-    props: {
-      params,
-    },
-  };
-};
-// export async function getServerSideProps({ params }) {
-//   return {
-//     props: {
-//       params,
-//     },
-//   };
-// }
-
-export default function MyCharacter({
-  params,
-}: {
-  params: {
-    id: string;
-  };
-}) {
-  // console.log(props);
-  const [session, loading] = useSession();
-  var authFunction;
-  if (session) authFunction = signOut;
-  else authFunction = signIn;
-
+export default function MyCharacter(props) {
+  const router = useRouter()
+  let id:string;
+  if(typeof router.query.id === 'string') id = router.query.id;
+  if(!id) id = 'rick-1';
+  console.log(id);
   return (
-    <>
-      <Navbar auth={() => authFunction()} isAuth={session ? true : false}>
-        <Character {...{ params }} />
-      </Navbar>
-    </>
+    <Navbar>
+      <Character params={{id: id}} />
+    </Navbar>
   );
 }
