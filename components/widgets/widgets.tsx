@@ -77,7 +77,7 @@ export default function Widgets(props) {
                 <div className={styles.block1} >
                 <div className={[styles.fixed, styles.cell1].join(' ')} >
                     <div className={styles.heading} >Basic Info</div>
-                    <div className={styles.content} style={{height: '100%', overflowY: 'scroll'}} >
+                    <div className={styles.content} style={{height: '100%', overflowY: 'scroll', padding: "0 16px"}} >
                         <p><strong>Name: </strong>{EpisodeData.name}</p>
                         <p><strong>Season: </strong>{Number(EpisodeData.episode.slice(1, 3))}</p>
                         <p><strong>Episode: </strong>{Number(EpisodeData.episode.slice(-2))}</p>

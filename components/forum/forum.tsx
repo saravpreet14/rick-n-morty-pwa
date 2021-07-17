@@ -134,7 +134,7 @@ export  default function Forum(props) {
       fontWeight: "bold",
     },
     main: {
-      height: '100%',
+      height: '98%',
       overflowY:"auto",
       // display:"flex",
       // "flex-direction": "column-reverse",

@@ -32,8 +32,6 @@ export default function Episodes(props) {
         errorPolicy: "ignore",
     });
 
-    console.log("episodes",data);
-
     useEffect(() => {
         function loadMore() {
             if(!data || !data.episodes) return;
@@ -54,7 +52,8 @@ export default function Episodes(props) {
     }, [data]);
 
     // if (loading) return <div className={styles.spinner} >{/*<CircularProgress className={styles.progress} />*/}</div>;
-    if (error) return <></>; //not needed as widgets error is sufficient
+    // if (error) return <Error />;  not needed as widgets error is sufficient
+    if(error) return <></>;
 
     function search(query: string) {
         static_filter = query;
@@ -72,7 +71,7 @@ export default function Episodes(props) {
     }
 
     let episodesData = null;
-    if(!loading ) {episodesData = data.episodes.results;}
+    if(!loading) episodesData = data.episodes.results;
 
     return (
         <div className={styles.main}>

@@ -66,7 +66,7 @@ export default function Home(props:{imageSize:{width: number, height: number}, b
         <div className={styles.skeletonSearch} >
           <Skeleton count={1} height={50} />
         </div>
-        <div className={styles.skeletonList} >
+        <div className={styles.skeletonList} style={props.isWidget ? {margin: '0 20px'} : null} >
           {[1, 2, 3, 4, 5, 6, 7, 8].map((t) => (
             <div className={styles.skeletonImage} style={props.isWidget ? {margin: '0.8rem'} : null} key={t} >
               <Skeleton height={props.isWidget ? 175 : 350} width={props.isWidget ? 150 : 300} />
@@ -164,10 +164,10 @@ export default function Home(props:{imageSize:{width: number, height: number}, b
           //   Load More
           // </Button> : 
           // <CircularProgress />
-          <div className={styles.skeletonList} >
+          <div className={styles.skeletonList} style={props.isWidget ? {margin: '0 20px'} : null} >
             {[1, 2, 3, 4].map((t) => (
               <div className={styles.skeletonImage} style={props.isWidget ? {margin: '0.8rem'} : null} key={t} >
-                <Skeleton height={props.isWidget ? 185 : 350} width={props.isWidget ? 160 : 300} />
+                <Skeleton height={props.isWidget ? 175 : 350} width={props.isWidget ? 150 : 300} />
               </div>
             ))}
           </div>
