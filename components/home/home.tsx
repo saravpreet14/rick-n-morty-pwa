@@ -92,11 +92,13 @@ export default function Home(props:{imageSize:{width: number, height: number}, b
       variables: variables,
 
       updateQuery: (prevResult:{characters: {results: characterData[]}}, { fetchMoreResult }) => {
-        fetchMoreResult.characters.results = [
-          ...prevResult.characters.results,
-          ...fetchMoreResult.characters.results,
-        ];
-        nextPageToLoaded = fetchMoreResult.characters.info.next;
+        if(fetchMoreResult.characters) {
+          nextPageToLoaded = fetchMoreResult.characters.info.next;
+          fetchMoreResult.characters.results = [
+            ...prevResult.characters.results,
+            ...fetchMoreResult.characters.results,
+          ];
+        }
         return fetchMoreResult;
       },
     }).catch(error => null);
@@ -116,7 +118,7 @@ export default function Home(props:{imageSize:{width: number, height: number}, b
     fetchMore({
       variables: { page: 1, filter: { name: query } },
       updateQuery: (prevResult, { fetchMoreResult }) => {
-        nextPageToLoaded = fetchMoreResult.characters.info.next;
+        if(fetchMoreResult.characters) nextPageToLoaded = fetchMoreResult.characters.info.next;
         return fetchMoreResult;
       },
     }).catch(error => null)
