@@ -62,6 +62,10 @@
   background-color: rgba(40, 28, 77, 0.3);;
 }
 
+.signInMessage {
+  text-align: center;
+}
+
 @media (max-width: 1000px) {
   .head {
     height: 50px;
